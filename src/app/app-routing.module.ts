@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PeopleMainComponent } from './people-main/people-main.component';
 import { PeopleDetailComponent } from './people-detail/people-detail.component';
 
 const routes: Routes = [
-
-    { path: 'people/:id', component: HeroDetailComponent },
-
+    { path: '', component: PeopleMainComponent },
+    { path: 'people/:id', component: PeopleDetailComponent },
 ];
 
 @NgModule({
