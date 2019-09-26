@@ -1,3 +1,29 @@
-<p>
-  people-detail works!
-</p>
+<div class="b-black" style="display:flex; justify-content:center; position:fixed; width: 100vw; height: 100vh; z-index: 100;" *ngIf="peopleService.loading">
+    <div style="align-self: center;"><h1 class="c-white">WIRD GELADEN!</h1></div>
+</div>
+
+<div class="container" style="border: 10px solid #666666;">
+    <div class="row b-grey">
+        <div class="col-md-4 p-t-20 p-b-20">
+            <figure><img src="https://sm.ign.com/ign_za/news/s/star-wars-/star-wars-the-rise-of-skywalker-score-will-include-every-the_k85n.jpg" class="img-thumbnail" /></figure>
+        </div>
+        <div class="col-md-8">
+            <h1>{{peopleDetailData.name}}</h1>
+            <table>
+                <tr>
+                    <td><b>Körpergröße</b></td>
+                    <td>{{peopleDetailData.height}}cm</td>
+                </tr>
+                <tr>
+                    <td><b>Körpergewicht</b></td>
+                    <td>{{peopleDetailData.mass}}kg</td>
+                </tr>
+                <tr>
+                    <td><b>Geburtstag</b></td>
+                    <td>{{peopleDetailData.birth_year}}</td>
+                </tr>
+            </table>
+            <div class="m-t-20 m-b-20"><a [routerLink]="['/']"><button class="c-black">Zurück</button></a></div>
+        </div>
+    </div>
+</div>

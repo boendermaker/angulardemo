@@ -1,4 +1,37 @@
-<p>
-  people-main works!
-  {{peopleService.loading}}
-</p>
+<div class="b-black" style="display:flex; justify-content:center; position:fixed; width: 100vw; height: 100vh; z-index: 100;" *ngIf="peopleService.loading">
+    <div style="align-self: center;"><h1 class="c-white">WIRD GELADEN!</h1></div>
+</div>
+
+<div class="container m-b-20" style="border: 10px solid #CC0000;">
+    <div class="row" style="padding: 20px;">
+        <div class="col-md-4">
+            Film:
+            <select [(ngModel)]="filterMovie">
+                <option value="0">Alle Filme</option>
+                <option *ngFor="let movieItem of movieData; let i = index" value="{{movieItem?.url | getIdFromUrl}}">{{movieItem?.title}}</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            Gewicht kleiner als:
+            <input [(ngModel)]="filterPeopleMass" type="text" value="30" />
+        </div>
+        <div class="col-md-4">
+            <button (click)="filterPeople()">Filter setzen</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="border: 10px solid #666666;">
+    <div class="row" *ngIf="peopleData?.length === 0">
+        <div class="col-md-12 ">Keine Ergebnisse zu Filterkriterien</div>
+    </div>
+    <div class="row b-grey p-t-20 p-b-20 m-b-20" *ngFor="let peopleitem of peopleData; let i = index">
+        <div class="col-md-4">
+            <figure><img src="https://sm.ign.com/ign_za/news/s/star-wars-/star-wars-the-rise-of-skywalker-score-will-include-every-the_k85n.jpg" class="img-thumbnail" /></figure>
+        </div>
+        <div class="col-md-8 p-t-20">
+            <h1>{{peopleitem.name}}</h1>
+            <a [routerLink]="['people/' + (i+1)]"><button class="c-black">Details</button></a>
+        </div>
+    </div>
+</div>

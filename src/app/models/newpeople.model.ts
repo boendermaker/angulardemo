@@ -1,4 +1,4 @@
-export class People {
+export class NewPeople {
 
     id: Number;
     name: String; 
@@ -18,8 +18,8 @@ export class People {
     edited: Date;
     url: String;
 
-    constructor(res, id) {
-        this.id = id;
+    constructor(res: any) {
+        this.id = this.getIdFromUrl(res.url);
         this.name = res.name; 
         this.height = res.height; 
         this.mass = res.mass; 
@@ -29,13 +29,18 @@ export class People {
         this.birth_year = res.birth_year; 
         this.gender = res.gender; 
         this.homeworld = res.homeworld; 
-        this.films = res.films;
+        this.films = res.films.map(res => this.getIdFromUrl(res));
         this.species = res.species;
         this.vehicles = res.vehicles;
         this.starships = res.starships;
         this.created = res.created;
         this.edited = res.edited;
         this.url = res.url;
+    }
+
+    getIdFromUrl(url: string) {
+        const urlArray = url.split('/');
+        return +urlArray[urlArray.length-2];
     }
 
 }
